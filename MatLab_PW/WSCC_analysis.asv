@@ -4,7 +4,7 @@ clc
 warning off
 path(path,'Load_flow');
 %                                                                         AVR   PSS  
-[A, B, pos_var, ~] = small_sgn_linp('Grid_WSCC_Sauer','gendat_WSCC_9_bus',  1,  0);
+[A, B, pos_var, ~] = small_sgn_linp('Grid_WSCC_Sauer','gendat_WSCC_9_bus',  0,  0);
 
 
 % Perform eigenvalue analysis on the system matrix A
@@ -68,19 +68,31 @@ V_useful = V([4 5 6], e_m_modes); %prendo solo gli elementi corrispondenti a aut
 [maxVal, idx] = max(abs(V_useful));
 
 %% Plot modshapes
-for k = 1:length(e_m_modes)
-    C = ((V_useful(:, k))./maxVal(k)*exp(-1j*angle(V_useful(idx(k),k))));
-    h = gobjects(numel(C),k);
-    figure;
-    ax = polaraxes; hold (ax, 'on');
-    names = ["G1", "G2", "G3"];
-    for i = 1:numel(C)
-        h(i) = compassplot(C(i));
-        h(i).DisplayName = names(i);
-    end
-    title("1st complex value mode shapes")
-    legend (ax, 'show')
-    hold (ax, 'off')
+for k = 
+C = ((V_useful(:, 1))./maxVal(1)*exp(-1j*angle(V_useful(idx(1),1))));
+h = gobjects(numel(C),1);
+figure;
+ax = polaraxes; hold (ax, 'on');
+names = ["G1", "G2", "G3"];
+for i = 1:numel(C)
+    h(i) = compassplot(C(i));
+    h(i).DisplayName = names(i);
 end
+title("1st complex value mode shapes")
+legend (ax, 'show')
+hold (ax, 'off')
+
+C = ((V_useful(:, 2))./maxVal(2)*exp(-1j*angle(V_useful(idx(2), 2))));
+figure;
+ax2 = polaraxes; hold (ax2, 'on');
+h = gobjects(numel(C),1);
+for i = 1:numel(C)
+    h(i) = compassplot(C(i));
+    h(i).DisplayName = names(i);
+end
+title("2nd complex value mode shapes")
+legend (ax2, 'show')
+hold (ax2, 'off')
+
 
 
