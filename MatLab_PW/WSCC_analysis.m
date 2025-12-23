@@ -39,6 +39,7 @@ for i = 1:numel(C)
     h(i) = compassplot(C(i));
     h(i).DisplayName = names(i);
 end
+title("1st complex value mode shapes")
 legend (ax, 'show')
 hold (ax, 'off')
 
@@ -50,6 +51,7 @@ for i = 1:numel(C)
     h(i) = compassplot(C(i));
     h(i).DisplayName = names(i);
 end
+title("2nd complex value mode shapes")
 legend (ax2, 'show')
 hold (ax2, 'off')
 %% damping ratio and oscillation drequency
