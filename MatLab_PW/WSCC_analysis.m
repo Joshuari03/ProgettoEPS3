@@ -4,7 +4,7 @@ clc
 warning off
 path(path,'Load_flow');
 %                                                                         AVR   PSS  
-[A, B, pos_var, ~] = small_sgn_linp('Grid_WSCC_Sauer','gendat_WSCC_9_bus',  1,  0);
+[A, B, pos_var, ~] = small_sgn_linp('Grid_WSCC_Sauer','gendat_WSCC_9_bus',  1,  1);
 
 
 % Perform eigenvalue analysis on the system matrix A
@@ -78,7 +78,7 @@ for k = 1:length(e_m_modes)
         h(i) = compassplot(C(i));
         h(i).DisplayName = names(i);
     end
-    title("1st complex value mode shapes")
+    title(sprintf("%.0f° complex value mode shape", k))
     legend (ax, 'show')
     hold (ax, 'off')
 end
